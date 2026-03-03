@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CringeForge — Professional Social Media. Unhinged Results.</title>
+  <meta name="description" content="Generate viral-worthy, engagement-bait content for LinkedIn, X, Instagram & Facebook. Be memorable. Be unhinged.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { 
+      font-family: 'Inter', system-ui, sans-serif; 
+      background: #0a0a0f;
+      color: #fafaf9;
+      overflow-x: hidden;
+    }
+    
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    
+    .gradient-text { 
+      background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb7185 100%); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+    }
+    
+    .gradient-linkedin { background: linear-gradient(135deg, #0a66c2, #0077b5); }
+    .gradient-x { background: linear-gradient(135deg, #000000, #1a1a1a); }
+    .gradient-instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+    .gradient-facebook { background: linear-gradient(135deg, #1877f2, #166fe5); }
+    
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #0a0a0f;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .reveal-text { overflow: hidden; }
+    .reveal-text-inner { display: block; transform: translateY(100%); }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .platform-glow-linkedin { box-shadow: 0 0 60px rgba(10, 102, 194, 0.3); }
+    .platform-glow-x { box-shadow: 0 0 60px rgba(255, 255, 255, 0.1); }
+    .platform-glow-instagram { box-shadow: 0 0 60px rgba(253, 29, 29, 0.2); }
+    .platform-glow-facebook { box-shadow: 0 0 60px rgba(24, 119, 242, 0.3); }
+    
+    .luxury-cta {
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .luxury-cta:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 60px -20px rgba(167, 139, 250, 0.4);
+    }
+    
+    .fade-up { opacity: 0; transform: translateY(40px); }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .float-anim { animation: float 6s ease-in-out infinite; }
+    
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(-45deg, #0a0a0f, #1a1a2e, #16213e, #0f3460);
+      background-size: 400% 400%;
+      animation: gradient-shift 15s ease infinite;
+    }
+    
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="text-2xl font-display font-bold tracking-wider">CringeForge</div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-6 px-8 opacity-0 -translate-y-full transition-all duration-500">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="#" class="font-display text-xl font-bold">CringeForge</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#platforms" class="text-sm text-stone-400 hover:text-white transition-colors">Platforms</a>
+        <a href="#examples" class="text-sm text-stone-400 hover:text-white transition-colors">Examples</a>
+        <a href="#pricing" class="text-sm text-stone-400 hover:text-white transition-colors">Pricing</a>
+      </div>
+      <a href="#generator" class="luxury-cta bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm">
+        Start Generating
+      </a>
+    </div>
+  </nav>
+
+  <!-- Section 1: Hero -->
+  <section class="min-h-screen flex items-center justify-center px-8 relative overflow-hidden gradient-bg">
+    <!-- Floating Orbs -->
+    <div class="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-violet-600/10 rounded-full blur-[120px] float-anim"></div>
+    <div class="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-pink-600/10 rounded-full blur-[100px] float-anim" style="animation-delay: -3s;"></div>
+    
+    <div class="max-w-6xl mx-auto text-center relative z-10">
+      <p class="text-violet-400 text-xs uppercase tracking-[0.3em] mb-8 opacity-0" id="hero-label">
+        Professional Social Media. Unhinged Results.
+      </p>
+      
+      <h1 class="text-6xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tight mb-8">
+        <div class="reveal-text">
+          <span class="reveal-text-inner">Your Content</span>
+        </div>
+        <div class="reveal-text">
+          <span class="reveal-text-inner gradient-text">Is Boring.</span>
+        </div>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-stone-400 max-w-2xl mx-auto mb-12 opacity-0" id="hero-sub">
+        Generate viral-worthy, engagement-bait content for LinkedIn, X, Instagram & Facebook. 
+        Be memorable. Be unhinged. <em>Be cringe.</em>
+      </p>
+      
+      <div class="opacity-0" id="hero-cta">
+        <a href="#generator" class="luxury-cta inline-flex items-center gap-3 bg-gradient-to-r from-violet-500 to-pink-500 text-white px-12 py-6 rounded-full font-bold text-lg">
+          Start Generating
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <p class="text-sm text-stone-500 mt-6">Trusted by 69,420+ social media managers. No credit card required.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Problem -->
+  <section class="py-32 md:py-48 px-8 bg-stone-50 text-stone-900">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 fade-up">The Problem</p>
+      
+      <h2 class="text-4xl md:text-6xl font-display font-bold leading-tight mb-8 fade-up">
+        Their Posts Get
+        <span class="text-violet-600">Engagement.</span><br>
+        Yours Get Ignored.
+      </h2>
+      
+      <p class="text-xl text-stone-600 max-w-2xl mx-auto fade-up">
+        The algorithm rewards controversy. It rewards emotion. It rewards 
+        <em>memorable</em> content—even if that memory makes people cringe.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3: Platforms -->
+  <section id="platforms" class="py-32 md:py-48 px-8 bg-[#0a0a0f]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-20">
+        <p class="text-stone-500 text-xs uppercase tracking-[0.3em] mb-8 fade-up">Platforms</p>
+        <h2 class="text-4xl md:text-6xl font-display font-bold fade-up">One Tool. Four Levels of Cringe.</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- LinkedIn -->
+        <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform cursor-pointer platform-glow-linkedin fade-up">
+          <div class="w-16 h-16 gradient-linkedin rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-white font-bold text-2xl">in</span>
+          </div>
+          <h3 class="text-xl font-bold mb-2">LinkedIn</h3>
+          <p class="text-sm text-stone-400 mb-4">Corporate Cringe</p>
+          <ul class="text-left text-sm text-stone-500 space-y-2">
+            <li>• Hustle Manifestos</li>
+            <li>• Firing Stories</li>
+            <li>• "Agree?" Bait</li>
+            <li>• CEO Morning Routines</li>
+          </ul>
+        </div>
+        
+        <!-- X -->
+        <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform cursor-pointer platform-glow-x fade-up">
+          <div class="w-16 h-16 gradient-x rounded-2xl flex items-center justify-center mx-auto mb-6 border border-stone-700">
+            <span class="text-white font-bold text-2xl">𝕏</span>
+          </div>
+          <h3 class="text-xl font-bold mb-2">X / Twitter</h3>
+          <p class="text-sm text-stone-400 mb-4">Hot Take Central</p>
+          <ul class="text-left text-sm text-stone-500 space-y-2">
+            <li>• Unpopular Opinions</li>
+            <li>• Thread Starters</li>
+            <li>• Vague Advice</li>
+            <li>• Crypto Wisdom</li>
+          </ul>
+        </div>
+        
+        <!-- Instagram -->
+        <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform cursor-pointer platform-glow-instagram fade-up">
+          <div class="w-16 h-16 gradient-instagram rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Instagram</h3>
+          <p class="text-sm text-stone-400 mb-4">Aesthetic Cringe</p>
+          <ul class="text-left text-sm text-stone-500 space-y-2">
+            <li>• Quote Graphics</li>
+            <li>• #Blessed Captions</li>
+            <li>• Lifestyle Flex</li>
+            <li>• Toxic Positivity</li>
+          </ul>
+        </div>
+        
+        <!-- Facebook -->
+        <div class="glass-card rounded-2xl p-8 text-center hover:scale-105 transition-transform cursor-pointer platform-glow-facebook fade-up">
+          <div class="w-16 h-16 gradient-facebook rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <span class="text-white font-bold text-2xl">f</span>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Facebook</h3>
+          <p class="text-sm text-stone-400 mb-4">Boomer Energy</p>
+          <ul class="text-left text-sm text-stone-500 space-y-2">
+            <li>• Minion Memes</li>
+            <li>• Chain Letters</li>
+            <li>• Vaguebooking</li>
+            <li>• "Copy & Share"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: How It Works -->
+  <section class="py-32 md:py-48 px-8 bg-white text-stone-900">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-20">
+        <p class="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 fade-up">How It Works</p>
+        <h2 class="text-4xl md:text-6xl font-display font-bold fade-up">Three Steps. Infinite Cringe.</h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="text-center fade-up">
+          <div class="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl font-display font-bold text-stone-900">01</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Select</h3>
+          <p class="text-stone-600">Choose your platform and cringe archetype. Hustle culture? Toxic positivity? Vague advice? We got you.</p>
+        </div>
+        
+        <div class="text-center fade-up">
+          <div class="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl font-display font-bold text-stone-900">02</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Generate</h3>
+          <p class="text-stone-600">Our advanced algorithms combine buzzwords, emojis, and questionable life advice into viral-ready content.</p>
+        </div>
+        
+        <div class="text-center fade-up">
+          <div class="w-20 h-20 bg-stone-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-3xl font-display font-bold text-stone-900">03</span>
+          </div>
+          <h3 class="text-2xl font-bold mb-3">Dominate</h3>
+          <p class="text-stone-600">Copy, paste, post. Watch the engagement roll in. Hate likes are still likes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Live Generator -->
+  <section id="generator" class="py-32 md:py-48 px-8 bg-[#0a0a0f]">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-stone-500 text-xs uppercase tracking-[0.3em] mb-8 fade-up">Live Demo</p>
+        <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 fade-up">Try It Now.</h2>
+        <p class="text-stone-400 fade-up">Your first viral post is free.</p>
+      </div>
+      
+      <!-- Generator Interface -->
+      <div class="glass-card rounded-3xl p-8 md:p-12">
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <label class="block text-sm font-semibold text-stone-300 mb-2">Platform</label>
+            <select id="demoPlatform" class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none">
+              <option value="linkedin">LinkedIn</option>
+              <option value="x">X / Twitter</option>
+              <option value="instagram">Instagram</option>
+              <option value="facebook">Facebook</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-stone-300 mb-2">Archetype</label>
+            <select id="demoType" class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none">
+              <option value="hustle">Hustle Culture</option>
+              <option value="positivity">Toxic Positivity</option>
+              <option value="vague">Vague Advice</option>
+              <option value="humblebrag">Humble Brag</option>
+            </select>
+          </div>
+        </div>
+        
+        <button onclick="generateDemo()" class="w-full bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-400 hover:to-pink-400 text-white font-bold py-4 rounded-lg transition-all mb-8">
+          Generate Cringe
+        </button>
+        
+        <!-- Output -->
+        <div class="bg-stone-900 rounded-xl p-6 border border-stone-800">
+          <p class="text-xs text-stone-500 mb-2 uppercase tracking-wider">Generated Post</p>
+          <p id="demoOutput" class="text-lg text-stone-200 leading-relaxed typing-cursor">Select options and click generate...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Social Proof -->
+  <section class="py-32 md:py-48 px-8 bg-violet-600">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 text-center text-white">
+        <div class="fade-up">
+          <p class="text-5xl md:text-6xl font-display font-bold mb-2">69,420</p>
+          <p class="text-violet-200">Social Media Managers</p>
+        </div>
+        <div class="fade-up">
+          <p class="text-5xl md:text-6xl font-display font-bold mb-2">1.2M</p>
+          <p class="text-violet-200">Posts Generated</p>
+        </div>
+        <div class="fade-up">
+          <p class="text-5xl md:text-6xl font-display font-bold mb-2">420M</p>
+          <p class="text-violet-200">Impressions Generated</p>
+        </div>
+        <div class="fade-up">
+          <p class="text-5xl md:text-6xl font-display font-bold mb-2">∞</p>
+          <p class="text-violet-200">Synergies Created</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Pricing -->
+  <section id="pricing" class="py-32 md:py-48 px-8 bg-stone-50 text-stone-900">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-stone-400 text-xs uppercase tracking-[0.3em] mb-8 fade-up">Pricing</p>
+        <h2 class="text-4xl md:text-6xl font-display font-bold mb-6 fade-up">Simple. Like Your Strategy.</h2>
+        <p class="text-xl text-stone-600 fade-up">Start free. Scale when you need more cringe.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Free -->
+        <div class="bg-white rounded-2xl p-8 border border-stone-200 fade-up">
+          <h3 class="text-xl font-bold mb-2">Starter</h3>
+          <p class="text-stone-500 mb-6">For casual cringe</p>
+          <p class="text-4xl font-display font-bold mb-6">$0</p>
+          <ul class="space-y-3 text-stone-600 mb-8">
+            <li>✓ 5 generations/day</li>
+            <li>✓ Basic templates</li>
+            <li>✓ All platforms</li>
+            <li>✓ Standard cringe</li>
+          </ul>
+          <button class="w-full py-3 border border-stone-300 rounded-full font-semibold hover:bg-stone-50 transition-colors">
+            Start Free
+          </button>
+        </div>
+        
+        <!-- Premium -->
+        <div class="bg-stone-900 rounded-2xl p-8 text-white relative overflow-hidden fade-up">
+          <div class="absolute top-4 right-4 bg-gradient-to-r from-violet-500 to-pink-500 text-xs px-3 py-1 rounded-full font-semibold">Popular</div>
+          <h3 class="text-xl font-bold mb-2">Pro</h3>
+          <p class="text-stone-400 mb-6">For serious engagement</p>
+          <p class="text-4xl font-display font-bold mb-6">$9<span class="text-lg font-normal text-stone-400">/mo</span></p>
+          <ul class="space-y-3 text-stone-300 mb-8">
+            <li>✓ Unlimited generations</li>
+            <li>✓ Advanced templates</li>
+            <li>✓ All platforms</li>
+            <li>✓ Maximum cringe</li>
+            <li>✓ Priority support</li>
+          </ul>
+          <button class="w-full py-3 bg-white text-stone-900 rounded-full font-semibold hover:bg-stone-100 transition-colors">
+            Go Pro
+          </button>
+        </div>
+        
+        <!-- Agency -->
+        <div class="bg-white rounded-2xl p-8 border border-stone-200 fade-up">
+          <h3 class="text-xl font-bold mb-2">Agency</h3>
+          <p class="text-stone-500 mb-6">For teams & agencies</p>
+          <p class="text-4xl font-display font-bold mb-6">$29<span class="text-lg font-normal text-stone-400">/mo</span></p>
+          <ul class="space-y-3 text-stone-600 mb-8">
+            <li>✓ Everything in Pro</li>
+            <li>✓ Team features</li>
+            <li>✓ White-label</li>
+            <li>✓ Analytics</li>
+            <li>✓ API access</li>
+          </ul>
+          <button class="w-full py-3 border border-stone-300 rounded-full font-semibold hover:bg-stone-50 transition-colors">
+            Contact Sales
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Final CTA -->
+  <section class="py-48 md:py-64 px-8 bg-[#0a0a0f] relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-violet-900/20 to-transparent"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/10 rounded-full blur-[150px]"></div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-5xl md:text-7xl font-display font-bold leading-tight mb-8 fade-up">
+        Ready to Be<br>
+        <span class="gradient-text">Unforgettable?</span>
+      </h2>
+      
+      <p class="text-xl text-stone-400 mb-12 fade-up">
+        Join 69,420+ social media managers who choose<br>
+        memorable over forgettable. Every single time.
+      </p>
+      
+      <div class="fade-up">
+        <a href="#generator" class="luxury-cta inline-flex items-center gap-3 bg-white text-stone-900 px-12 py-6 rounded-full font-bold text-xl hover:bg-stone-100 transition-all">
+          Start Generating Cringe
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+        <p class="text-sm text-stone-500 mt-6">No credit card required. Cancel anytime. Stay cringe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-8 bg-stone-950 border-t border-stone-900">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <span class="font-display text-xl font-bold">CringeForge</span>
+      <p class="text-stone-500 text-sm">© 2026 CringeForge. Professional Social Media. Unhinged Results.</p>
+      <a href="mailto:hello@cringeforge.com" class="text-sm text-stone-400 hover:text-white transition-colors">hello@cringeforge.com</a>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lenis
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true
+    });
+    
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    
+    // GSAP
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Preloader
+    window.addEventListener('load', () => {
+      gsap.to('#preloader', {
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          document.getElementById('preloader').style.display = 'none';
+          initAnimations();
+        }
+      });
+    });
+    
+    function initAnimations() {
+      gsap.to('.reveal-text-inner', {
+        y: '0%',
+        duration: 1.2,
+        stagger: 0.15,
+        ease: 'power4.out'
+      });
+      
+      gsap.to('#hero-label', { opacity: 1, duration: 0.8, delay: 0.6 });
+      gsap.to('#hero-sub', { opacity: 1, y: 0, duration: 1, delay: 0.9 });
+      gsap.to('#hero-cta', { opacity: 1, duration: 0.8, delay: 1.2 });
+      
+      // Nav show on scroll
+      ScrollTrigger.create({
+        start: 'top -100',
+        onUpdate: (self) => {
+          const nav = document.getElementById('nav');
+          if (self.progress > 0) {
+            nav.style.opacity = '1';
+            nav.style.transform = 'translateY(0)';
+          }
+        }
+      });
+      
+      // Fade up elements
+      gsap.utils.toArray('.fade-up').forEach((el) => {
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%'
+          }
+        });
+      });
+    }
+    
+    // Demo Generator
+    const demoTemplates = {
+      linkedin: {
+        hustle: "I was today years old when I realized that success isn't about the destination—it's about synergizing your core competencies while leveraging paradigm shifts in the corporate space. 💪\n\nThis morning I woke up at 4 AM, meditated for 3 hours, and fired someone before breakfast. That's what CEOs do.\n\nAgree? 👇",
+        positivity: "Just got laid off. Couldn't be more grateful! 🙏\n\nSometimes the universe removes you from toxic situations (employment) to put you where you need to be (unemployed).\n\nTrust the journey! ✨",
+        vague: "3 things I wish I knew before starting my career:\n\n1. Trust the process\n2. Network strategically\n3. Never give up\n\nDrop a 🔥 if you agree!",
+        humblebrag: "Humbled to announce I just closed a $50M Series B. I say 'humbled' but honestly I've never been more confident.\n\nP.S. - Still driving my 2009 Honda though. Stay grounded. 🚗"
+      },
+      x: {
+        hustle: "Hot take: Working 80 hours a week is actually GOOD for your mental health. Builds character. Separates the wolves from the sheep.\n\nAgree or argue below. I'll wait. 👇",
+        positivity: "My startup just failed. I'm not sad, I'm EXCITED!\n\nFailure is just success in progress. Now I can leverage my learnings to pivot into something even more disruptive!\n\nWho's with me? 🔥",
+        vague: "The secret to success? It's not what you think. It's not about skills. It's not about connections.\n\nIt's about something much deeper. Something I can't explain in a post.\n\nDM me 'SUCCESS' to learn more.",
+        humblebrag: "Someone asked me: 'How did you become a millionaire before 30?'\n\nI laughed. It wasn't easy. It took waking up at 4 AM every day for 10 years.\n\nBut if I can do it, anyone with my specific advantages can too! 💪"
+      },
+      instagram: {
+        hustle: "✨ boss babe ✨\n\nwaking up at 5am to grind before the grind\ncoffee in one hand, ambition in the other\n\n#girlboss #hustle #entrepreneur #manifesting",
+        positivity: "🌸 positive vibes only 🌸\n\ndon't let negative energy enter your space\nif they don't support your dreams, they don't deserve your presence\n\n#blessed #grateful #positivevibes #energy",
+        vague: "📸 late night thoughts...\n\nsometimes you have to let go of what's weighing you down\neven if it feels heavy\nespecially if it feels heavy\n\n#deep #thoughts #reflection #growth",
+        humblebrag: "living my best life ✨\n\njust closed another deal from my beachfront office (aka my phone at starbucks but manifesting the beachfront) 💅\n\n#blessed #livingmybestlife #manifesting #success"
+      },
+      facebook: {
+        hustle: "COPY AND SHARE IF YOU AGREE!!!\n\nI don't work 9-5\nI work 5-9\nAM TO AM!!!\n\nWHO ELSE IS GRINDING WITH ME???",
+        positivity: "SHARE THIS TO BLESS SOMEONE TODAY 🙏\n\nGOD has a plan for you\neven when you can't see it\nespecially when you can't see it\n\nAMEN IF YOU BELIEVE!!!",
+        vague: "some people will never understand...\n\nand that's okay\nbecause you're not doing it for them\nyou're doing it for you\n\n*share if you agree*",
+        humblebrag: "feeling blessed today 🙏\n\njust got back from vacation (3rd one this year lol)\nhard work pays off!!\n\nwho else is living their dreams???"
+      }
+    };
+    
+    function generateDemo() {
+      const platform = document.getElementById('demoPlatform').value;
+      const type = document.getElementById('demoType').value;
+      const output = document.getElementById('demoOutput');
+      
+      const text = demoTemplates[platform]?.[type] || "Select a platform and type to generate cringe...";
+      
+      // Typewriter effect
+      output.textContent = '';
+      output.classList.add('typing-cursor');
+      let i = 0;
+      
+      const typeWriter = () => {
+        if (i < text.length) {
+          output.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 20);
+        } else {
+          output.classList.remove('typing-cursor');
+        }
+      };
+      
+      typeWriter();
+    }
+  </script>
+</body>
+</html>
