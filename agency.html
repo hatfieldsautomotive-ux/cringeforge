@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agency Contact | CringeForge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0a0a0f; color: #fafaf9; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb7185 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="min-h-screen px-4 py-12">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-12">
+      <a href="/" class="font-display text-3xl font-bold">CringeForge</a>
+      <h1 class="text-4xl md:text-5xl font-display font-bold mt-8 mb-4">
+        Agency & <span class="gradient-text">White-Label</span>
+      </h1>
+      <p class="text-xl text-stone-400">
+        Custom deployments for agencies, teams, and enterprises.
+        We'll build you a branded version.
+      </p>
+    </div>
+    
+    <div class="bg-stone-900/50 border border-stone-800 rounded-2xl p-8">
+      <!-- Benefits -->
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div class="flex items-start gap-3">
+          <span class="text-green-400 text-xl">✓</span>
+          <div>
+            <p class="font-semibold">White-Label Platform</p>
+            <p class="text-sm text-stone-400">Your branding, your domain</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <span class="text-green-400 text-xl">✓</span>
+          <div>
+            <p class="font-semibold">Team Management</p>
+            <p class="text-sm text-stone-400">Add unlimited team members</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <span class="text-green-400 text-xl">✓</span>
+          <div>
+            <p class="font-semibold">Analytics Dashboard</p>
+            <p class="text-sm text-stone-400">Track usage and engagement</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <span class="text-green-400 text-xl">✓</span>
+          <div>
+            <p class="font-semibold">API Access</p>
+            <p class="text-sm text-stone-400">Integrate into your workflows</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <span class="text-green-400 text-xl">✓</span>
+          <div>
+            <p class="font-semibold">Custom Templates</p>
+            <p class="text-sm text-stone-400">Industry-specific content</p>
+          </div>
+        </div>
+        
+        <div class="flex items-start gap-3">
+          <span class="text-green-400 text-xl">✓</span>
+          <div>
+            <p class="font-semibold">Priority Support</p>
+            <p class="text-sm text-stone-400">Dedicated account manager</p>
+          </div>
+        </div>
+      </div>
+      
+      <hr class="border-stone-800 mb-8">
+      
+      <!-- Contact Form -->
+      <form id="agencyForm">
+        <div class="grid md:grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-sm font-semibold text-stone-300 mb-2">Name</label>
+            <input type="text" id="name" required
+                   class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none"
+                   placeholder="John Doe">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-stone-300 mb-2">Email</label>
+            <input type="email" id="email" required
+                   class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none"
+                   placeholder="john@agency.com">
+          </div>
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-sm font-semibold text-stone-300 mb-2">Company</label>
+          <input type="text" id="company" required
+                 class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none"
+                 placeholder="Awesome Marketing Agency">
+        </div>
+        
+        <div class="mb-4">
+          <label class="block text-sm font-semibold text-stone-300 mb-2">Team Size</label>
+          <select id="teamSize" required
+                  class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none">
+            <option value="">Select team size</option>
+            <option value="1-5">1-5 people</option>
+            <option value="6-20">6-20 people</option>
+            <option value="21-50">21-50 people</option>
+            <option value="50+">50+ people</option>
+          </select>
+        </div>
+        
+        <div class="mb-6">
+          <label class="block text-sm font-semibold text-stone-300 mb-2">Tell us about your needs</label>
+          <textarea id="message" rows="4" required
+                    class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none resize-none"
+                    placeholder="We're looking for a white-label solution for our clients..."></textarea>
+        </div>
+        
+        <button type="submit" id="submitBtn"
+                class="w-full bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-400 hover:to-pink-400 text-white font-bold py-4 rounded-lg transition-all">
+          Request Agency Demo
+        </button>
+      </form>
+      
+      <div id="success" class="mt-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-center hidden">
+        <p class="font-semibold">Thanks! We'll be in touch within 24 hours.</p>
+        <p class="text-sm mt-1">Check your email for next steps.</p>
+      </div>
+      
+      <div id="error" class="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-center hidden"></div>
+      
+      <p class="mt-6 text-center text-stone-500 text-xs">
+        <a href="/pricing" class="hover:text-stone-400">← Back to pricing</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('agencyForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const btn = document.getElementById('submitBtn');
+      const error = document.getElementById('error');
+      const success = document.getElementById('success');
+      
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      error.classList.add('hidden');
+      success.classList.add('hidden');
+      
+      try {
+        const res = await fetch('/api/contact-agency', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value,
+            message: `Team Size: ${document.getElementById('teamSize').value}\n\n${document.getElementById('message').value}`
+          })
+        });
+        
+        const data = await res.json();
+        
+        if (!res.ok) throw new Error(data.error || 'Something went wrong');
+        
+        success.classList.remove('hidden');
+        document.getElementById('agencyForm').reset();
+        
+      } catch (err) {
+        error.textContent = err.message;
+        error.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Request Agency Demo';
+      }
+    });
+  </script>
+</body>
+</html>

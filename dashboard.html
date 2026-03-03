@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | CringeForge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; background: #0a0a0f; color: #fafaf9; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb7185 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.06); }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="border-b border-white/10 py-4 px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a href="/" class="font-display text-xl font-bold">CringeForge</a>
+      <div class="flex items-center gap-6">
+        <span id="userEmail" class="text-sm text-stone-400"></span>
+        <span id="userTier" class="px-3 py-1 bg-gradient-to-r from-violet-500 to-pink-500 rounded-full text-xs font-semibold">Free</span>
+        <button onclick="logout()" class="text-sm text-stone-400 hover:text-white">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="max-w-7xl mx-auto px-8 py-12">
+    <!-- Usage Stats -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="glass-card rounded-2xl p-6">
+        <p class="text-stone-400 text-sm mb-2">Today's Generations</p>
+        <p id="generationsToday" class="text-4xl font-display font-bold">0/5</p>
+        <p id="usageMessage" class="text-xs text-stone-500 mt-2">Free tier: 5 per day</p>
+      </div>
+      
+      <div class="glass-card rounded-2xl p-6">
+        <p class="text-stone-400 text-sm mb-2">Total Generations</p>
+        <p id="totalGenerations" class="text-4xl font-display font-bold">0</p>
+      </div>
+      
+      <div class="glass-card rounded-2xl p-6">
+        <p class="text-stone-400 text-sm mb-2">Current Tier</p>
+        <p id="currentTier" class="text-4xl font-display font-bold gradient-text">Free</p>
+        <a href="/pricing" id="upgradeBtn" class="text-xs text-violet-400 hover:underline mt-2 inline-block">Upgrade to Pro →</a>
+      </div>
+    </div>
+
+    <!-- Generator -->
+    <div class="glass-card rounded-2xl p-8 mb-12">
+      <h2 class="text-2xl font-bold mb-6">Generate Cringe</h2>
+      
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <label class="block text-sm font-semibold text-stone-300 mb-2">Platform</label>
+          <select id="platform" class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none">
+            <option value="linkedin">LinkedIn</option>
+            <option value="x">X / Twitter</option>
+            <option value="instagram">Instagram</option>
+            <option value="facebook">Facebook</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-semibold text-stone-300 mb-2">Archetype</label>
+          <select id="type" class="w-full px-4 py-3 bg-stone-900 border border-stone-700 rounded-lg text-white focus:border-violet-500 focus:outline-none">
+            <option value="hustle">Hustle Culture</option>
+            <option value="positivity">Toxic Positivity</option>
+            <option value="vague">Vague Advice</option>
+            <option value="humblebrag">Humble Brag</option>
+          </select>
+        </div>
+      </div>
+      
+      <button onclick="generate()" id="generateBtn" class="w-full bg-gradient-to-r from-violet-500 to-pink-500 hover:from-violet-400 hover:to-pink-400 text-white font-bold py-4 rounded-lg transition-all">
+        Generate Post
+      </button>
+      
+      <div id="result" class="mt-6 p-6 bg-stone-900 rounded-xl border border-stone-800 hidden">
+        <p class="text-xs text-stone-500 mb-2 uppercase tracking-wider">Generated Post</p>
+        <pre id="generatedContent" class="text-stone-200 whitespace-pre-wrap font-sans"></pre>
+        
+        <button onclick="copyToClipboard()" class="mt-4 px-4 py-2 bg-stone-800 hover:bg-stone-700 rounded-lg text-sm transition-colors">
+          Copy to Clipboard
+        </button>
+      </div>
+      
+      <div id="error" class="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 hidden"></div>
+    </div>
+
+    <!-- Recent Generations -->
+    <div class="glass-card rounded-2xl p-8">
+      <h2 class="text-2xl font-bold mb-6">Recent Generations</h2>
+      <div id="recentList" class="space-y-4">
+        <p class="text-stone-500">No generations yet. Create your first post above! 🚀</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Check auth on load
+    async function checkAuth() {
+      try {
+        const res = await fetch('/api/auth/user');
+        if (!res.ok) throw new Error('Not authenticated');
+        
+        const { profile } = await res.json();
+        
+        // Update UI
+        document.getElementById('userEmail').textContent = profile.email;
+        document.getElementById('userTier').textContent = profile.tier;
+        document.getElementById('currentTier').textContent = profile.tier;
+        document.getElementById('generationsToday').textContent = 
+          profile.tier === 'free' ? `${profile.generations_today}/5` : '∞';
+        document.getElementById('totalGenerations').textContent = profile.total_generations;
+        
+        // Hide upgrade button if pro
+        if (profile.tier === 'pro') {
+          document.getElementById('upgradeBtn').style.display = 'none';
+          document.getElementById('usageMessage').textContent = 'Pro tier: Unlimited generations';
+        }
+      } catch (err) {
+        window.location.href = '/login';
+      }
+    }
+
+    async function generate() {
+      const btn = document.getElementById('generateBtn');
+      const result = document.getElementById('result');
+      const error = document.getElementById('error');
+      
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+      error.classList.add('hidden');
+      
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            platform: document.getElementById('platform').value,
+            type: document.getElementById('type').value
+          })
+        });
+        
+        const data = await res.json();
+        
+        if (!res.ok) {
+          if (data.upgrade_url) {
+            error.innerHTML = `${data.error} <a href="${data.upgrade_url}" class="underline">Upgrade to Pro</a>`;
+          } else {
+            error.textContent = data.error;
+          }
+          error.classList.remove('hidden');
+          return;
+        }
+        
+        document.getElementById('generatedContent').textContent = data.content;
+        result.classList.remove('hidden');
+        
+        // Refresh stats
+        checkAuth();
+        
+      } catch (err) {
+        error.textContent = 'Something went wrong. Try again.';
+        error.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Generate Post';
+      }
+    }
+
+    function copyToClipboard() {
+      const content = document.getElementById('generatedContent').textContent;
+      navigator.clipboard.writeText(content);
+      alert('Copied! Go post this on social media and watch the engagement roll in 🚀');
+    }
+
+    async function logout() {
+      await fetch('/api/auth/signout', { method: 'POST' });
+      window.location.href = '/';
+    }
+
+    checkAuth();
+  </script>
+</body>
+</html>

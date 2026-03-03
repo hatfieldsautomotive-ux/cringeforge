@@ -115,9 +115,12 @@
         <a href="#examples" class="text-sm text-stone-400 hover:text-white transition-colors">Examples</a>
         <a href="#pricing" class="text-sm text-stone-400 hover:text-white transition-colors">Pricing</a>
       </div>
-      <a href="#generator" class="luxury-cta bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm">
-        Start Generating
-      </a>
+      <div class="flex items-center gap-4">
+        <a href="/login.html" class="hidden md:block text-sm text-stone-400 hover:text-white transition-colors">Sign In</a>
+        <a href="/signup.html" class="luxury-cta bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm">
+          Get Started
+        </a>
+      </div>
     </div>
   </nav>
 
@@ -391,7 +394,7 @@
             <li>✓ Maximum cringe</li>
             <li>✓ Priority support</li>
           </ul>
-          <button class="w-full py-3 bg-white text-stone-900 rounded-full font-semibold hover:bg-stone-100 transition-colors">
+          <button onclick="startCheckout()" class="w-full py-3 bg-white text-stone-900 rounded-full font-semibold hover:bg-stone-100 transition-colors">
             Go Pro
           </button>
         </div>
@@ -399,18 +402,18 @@
         <!-- Agency -->
         <div class="bg-white rounded-2xl p-8 border border-stone-200 fade-up">
           <h3 class="text-xl font-bold mb-2">Agency</h3>
-          <p class="text-stone-500 mb-6">For teams & agencies</p>
-          <p class="text-4xl font-display font-bold mb-6">$29<span class="text-lg font-normal text-stone-400">/mo</span></p>
+          <p class="text-stone-500 mb-6">For teams & white-label</p>
+          <p class="text-4xl font-display font-bold mb-6">Custom</p>
           <ul class="space-y-3 text-stone-600 mb-8">
             <li>✓ Everything in Pro</li>
-            <li>✓ Team features</li>
-            <li>✓ White-label</li>
-            <li>✓ Analytics</li>
+            <li>✓ White-label platform</li>
+            <li>✓ Team management</li>
+            <li>✓ Analytics dashboard</li>
             <li>✓ API access</li>
           </ul>
-          <button class="w-full py-3 border border-stone-300 rounded-full font-semibold hover:bg-stone-50 transition-colors">
+          <a href="/agency.html" class="block w-full py-3 text-center border border-stone-300 rounded-full font-semibold hover:bg-stone-50 transition-colors">
             Contact Sales
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -572,6 +575,27 @@
       };
       
       typeWriter();
+    }
+
+    // Stripe Checkout for Pro
+    async function startCheckout() {
+      try {
+        const res = await fetch('/api/create-checkout-session', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        
+        const data = await res.json();
+        
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          // Not logged in, redirect to signup
+          window.location.href = '/signup.html';
+        }
+      } catch (err) {
+        window.location.href = '/signup.html';
+      }
     }
   </script>
 </body>
